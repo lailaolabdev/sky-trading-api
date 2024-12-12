@@ -1,0 +1,28 @@
+# Directory for npm
+node_modules/
+
+# Environment variables
+.env
+
+# Debugger configurations
+.idea/
+.vscode/
+
+# Build artifacts
+dist/
+build/
+out/
+coverage/
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+tmp/
+temp/
+
+# Docker
+docker-compose.override.yml
+.docker/
