@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const recommendationSchema = new mongoose.Schema({
+const testimonialSchema = new mongoose.Schema({
     userName: { type: String},
     userNameEN: { type: String},
     image: { type: String },
@@ -14,5 +14,5 @@ const recommendationSchema = new mongoose.Schema({
     updatedBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User'}
   });
   
-  module.exports = mongoose.model('Recommendation', recommendationSchema);
+  module.exports = mongoose.model('Testimonial', testimonialSchema);
   
