@@ -79,7 +79,7 @@ const deleteStaff = async (req, res) => {
     if(!staffInfo.data) {
         return res.status(404).json({ message: "STAFF_NOT_FOUND" });
     }
-    return res.status(200).json({ message: "DELETE_STAFFS_SUCCESSFUL", data: staffInfo});
+    return res.status(200).json(staffInfo);
 };
 
 module.exports = { getStaffs, addStaff, getStaff, updateStaff, deleteStaff };

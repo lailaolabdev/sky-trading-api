@@ -84,7 +84,7 @@ const getBrokersService = async (req, query) => {
         const skip = parseInt(req.query.skip) || 0;
 
         // Step 1: Fetch all brokers
-        const brokers = await brokerModel.find(query).limit(limit).skip(skip);
+        const brokers = await brokerModel.find(query).sort({top: 1, createdAt: -1}).limit(limit).skip(skip);
 
         // Step 2: For each broker, fetch comparisons that reference the brokerID
         const brokersWithComparisons = await Promise.all(
@@ -144,7 +144,7 @@ const updateBrokerTopService = async (req) => {
         const topBrokers = req.body.topBrokers;
         const operations = topBrokers.map(update => ({
             updateOne: {
-              filter: { _id: update._id }, // Match by _id
+              filter: { _id: update.id }, // Match by _id
               update: { $set: { top: update.top } }, // Set the new status
             },
         }));

@@ -5,8 +5,8 @@ const router = express.Router();
 
 router.post("/", checkAuthorization, createArticle);
 router.put("/:id", checkAuthorization, updateArticle);
-router.get("/article-id/:id", checkAuthorization, getArticle);
-router.get("/", checkAuthorization, getArticles);
+router.get("/article-id/:id", getArticle);
+router.get("/", getArticles);
 router.delete("/:id", checkAuthorization, deleteArticle);
 
 module.exports = router;

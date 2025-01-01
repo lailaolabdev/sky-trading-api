@@ -49,6 +49,9 @@ const getTestimonialsService = async (req, query) => {
 const deleteTestimonialService = async (req) => {
     try{
         const testimonial = await testimonialModel.findByIdAndDelete(req.params.id);
+        if(!testimonial){
+            return {message: "TESTIMONIAL_NOT_FOUND", data: null}
+        }
         return {message: "DELETE_TESTIMONIAL_SUCCESSFUL", data: testimonial._id}
     }catch(error){
         console.log({error});

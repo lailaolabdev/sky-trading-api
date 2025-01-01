@@ -12,7 +12,6 @@ const staffSchema = Joi.object({
         'string.email': 'EMAIL_INVALID',
         'any.required': 'EMAIL_REQUIRED'
     }),
-    role: Joi.string(),
     profileImage: Joi.string(),
     password: Joi.string().min(8).required().messages({
         'string.empty': 'PASSWORD_REQUIRED',

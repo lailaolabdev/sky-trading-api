@@ -5,8 +5,8 @@ const {createFaq, getFaqs, getFaq, deleteFaq, updateFaq} = require("../../contro
 
 
 router.post("/", checkAuthorization, createFaq);
-router.get("/", checkAuthorization, getFaqs);
-router.get("/faq-id/:id", checkAuthorization, getFaq);
+router.get("/", getFaqs);
+router.get("/faq-id/:id", getFaq);
 router.delete("/:id", checkAuthorization, deleteFaq);
 router.put("/:id", checkAuthorization, updateFaq);
 

@@ -56,4 +56,15 @@ const comparisonComponentExists = async (req) => {
         return {message: "INTERNAL_SERVER_ERROR", isValid: false};
     }
 }
-module.exports = {createComparisonComponentService, deleteComparisonComponentService, updateComparisonComponentService, comparisonComponentExists};
+
+const getComparisonComponentService = async (req) => {
+    try {
+        const comparisonComponent = await comparisonComponentModel.find({});
+        return {message: "GET_COMPARISON_COMPONENT_SUCCESSFUL", data: comparisonComponent};
+    } catch (error) {
+        console.error("Error :", error);
+        return {message: "INTERNAL_SERVER_ERROR", data: null};
+    }
+}
+
+module.exports = {createComparisonComponentService, deleteComparisonComponentService, updateComparisonComponentService, comparisonComponentExists, getComparisonComponentService, getComparisonComponentService};

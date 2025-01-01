@@ -1,4 +1,6 @@
 const comparisonModel = require("../../models/comparisonModel");
+const brokerModel = require("../../models/brokerModel");
+const {addSimilarField} = require("./helper");
 
 const createComparisonService = async (req) => {
     try {
@@ -38,4 +40,58 @@ const brokerComparinsonExits = async (req) => {
         return { isInvalid: false, message: "INTERNAL_SERVER_ERROR"};
     }
 }
-module.exports = { createComparisonService, updateComparisonService, brokerComparinsonExits }
+
+const brokerComparisonsService = async (req, query) => {
+    try {
+        const brokerComparisons = await brokerModel.find(query).sort({top: 1, createdAt: -1});
+        if (!brokerComparisons) {
+            return {message: "BROKER_NOT_FOUND", data: null};
+        }
+
+        const brokersWithComparisons = await Promise.all(
+            brokerComparisons.map(async (broker) => {
+                const comparisons = await comparisonModel.find({ brokerID: broker._id });
+                return {
+                    ...broker.toObject(), // Convert the Mongoose object to plain JS object
+                    comparisons,          // Attach the related comparisons
+                };
+            })
+        );
+
+        if(req.query.similar == "true" || req.query.similar == true){
+            const similarField = addSimilarField(brokersWithComparisons);
+
+            // console.log({similarField});
+            return {message: "GET_BROKER_COMPARISONS_SUCCESSFUL", data: brokersWithComparisons};
+        }
+        return {message: "GET_BROKER_COMPARISONS_SUCCESSFUL", data: brokersWithComparisons};
+    } catch (error) {
+        console.error("Error updating broker data:", error);
+        return {message: "INTERNAL_SERVER_ERROR"};
+    }
+}
+const brokerSimilarityService = async (req, query) => {
+    try {
+        const brokerComparisons = await brokerModel.find(query).sort({top: 1, createdAt: -1});
+        if (!brokerComparisons) {
+            return {message: "BROKER_NOT_FOUND", data: null};
+        }
+
+        const brokersWithComparisons = await Promise.all(
+            brokerComparisons.map(async (broker) => {
+                const comparisons = await comparisonModel.find({ brokerID: broker._id });
+                return {
+                    ...broker.toObject(), // Convert the Mongoose object to plain JS object
+                    comparisons,          // Attach the related comparisons
+                };
+            })
+        );
+        return {message: "GET_BROKER_COMPARISONS_SUCCESSFUL", data: brokersWithComparisons};
+    } catch (error) {
+        console.error("Error updating broker data:", error);
+        return {message: "INTERNAL_SERVER_ERROR"};
+    }
+}
+
+
+module.exports = { createComparisonService, updateComparisonService, brokerComparinsonExits, brokerComparisonsService, brokerSimilarityService}

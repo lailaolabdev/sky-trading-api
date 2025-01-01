@@ -6,24 +6,22 @@ const objectIdPattern = /^[0-9a-fA-F]{24}$/;
 const schema = Joi.object({
     topBrokers: Joi.array()
         .items(
-            Joi.array().items(
-                Joi.object({
-                    _id: Joi.string()
-                        .pattern(objectIdPattern)
-                        .required()
-                        .messages({
-                            "string.pattern.base": "TOPBROKERS_ID_MUST_BE_A_VALID_OBJECTID",
-                            "any.required": "TOPBROKERS_ID_IS_REQUIRED",
-                        }),
-                    top: Joi.number()
-                        .integer()
-                        .required()
-                        .messages({
-                            "number.base": "TOP_MUST_BE_AN_INTEGER",
-                            "any.required": "TOP_IS_REQUIRED",
-                        }),
-                }).required()
-            )
+            Joi.object({
+                id: Joi.string()
+                    .pattern(objectIdPattern)
+                    .required()
+                    .messages({
+                        "string.pattern.base": "TOPBROKERS_ID_MUST_BE_A_VALID_OBJECTID",
+                        "any.required": "TOPBROKERS_ID_IS_REQUIRED",
+                    }),
+                top: Joi.number()
+                    .integer()
+                    .required()
+                    .messages({
+                        "number.base": "TOP_MUST_BE_AN_INTEGER",
+                        "any.required": "TOP_IS_REQUIRED",
+                    }),
+            }).required()
         )
         .required()
         .messages({

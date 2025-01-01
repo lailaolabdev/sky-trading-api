@@ -1,4 +1,4 @@
-const {createComparisonComponentService, deleteComparisonComponentService, updateComparisonComponentService, comparisonComponentExists} = require('../../services/comparisonComponent');
+const {createComparisonComponentService, deleteComparisonComponentService, updateComparisonComponentService, comparisonComponentExists, getComparisonComponentService} = require('../../services/comparisonComponent');
 const validateComparisonComponent = require('../../validators/comparisonComponentValidator');
 
 const createComparisonComponent = async (req, res) => {
@@ -47,4 +47,15 @@ const updateComparisonComponent = async (req, res) => {
     }  
 };
 
-module.exports = {createComparisonComponent, deleteComparisonComponent, updateComparisonComponent};
+const getComparisonComponent = async (req, res) => {
+    try {
+        const comparisonComponent = await getComparisonComponentService(req);
+        if(!comparisonComponent.data) {
+            return res.status(400).json({ message: comparisonComponent.message });
+        }
+        return res.status(200).json(comparisonComponent);
+    } catch (error) {
+        return res.status(500).json({message: error.message});
+    }
+}
+module.exports = {createComparisonComponent, deleteComparisonComponent, updateComparisonComponent, getComparisonComponent};

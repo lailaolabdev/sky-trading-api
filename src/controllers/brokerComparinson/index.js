@@ -1,6 +1,9 @@
 const {createComparisonService, updateComparisonService, brokerComparinsonExits} = require('../../services/brokerComparison');
 const validateBrokerData = require('../../validators/brokerComparisonValidator');
 const updateBrokerValidator = require('../../validators/updateBrokerComparinsonValidator');
+const {searchQuery, areBrokersUnique} = require('./helper');
+
+const {brokerComparisonsService} = require('../../services/brokerComparison');
 
 const createComparison = async (req, res) => {
     try {
@@ -38,4 +41,22 @@ const updateComparison = async (req, res) => {
     }
 }
 
-module.exports = {createComparison, updateComparison}
+const getBrokerComparisons = async (req, res) => {
+    try {
+        if(!areBrokersUnique(req)) {
+            return res.status(400).json({message: "BROKERS_ARE_NOT_UNIQUE"});
+        }
+        
+        const query = searchQuery(req);
+        const brokerComparisons = await brokerComparisonsService(req, query);
+        if(!brokerComparisons.data) {
+            return res.status(400).json({message: brokerComparisons.message});
+        }
+        return res.status(200).json(brokerComparisons);
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({message: error.message});
+    }
+}
+
+module.exports = {createComparison, updateComparison, getBrokerComparisons}

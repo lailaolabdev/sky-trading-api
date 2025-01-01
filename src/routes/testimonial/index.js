@@ -6,8 +6,8 @@ const {checkAuthorization} = require("../../middlewares")
 
 router.post("/", checkAuthorization, createTestimonial);    
 router.put("/:id", checkAuthorization, updateTestimonial);
-router.get("/testimonial-id/:id", checkAuthorization, getTestimonial);
-router.get("/", checkAuthorization, getTestimonials);
+router.get("/testimonial-id/:id", getTestimonial);
+router.get("/", getTestimonials);
 router.delete("/:id", checkAuthorization, deleteTestimonial);
 
 module.exports = router;

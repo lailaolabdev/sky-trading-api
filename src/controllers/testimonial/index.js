@@ -56,6 +56,9 @@ const getTestimonials = async (req, res) => {
 const deleteTestimonial = async (req, res) => {
     try{
         const testimonial = await deleteTestimonialService(req);
+        if(!testimonial.data) {
+            return res.status(400).json({message: testimonial.message});
+        }
         return res.status(200).json(testimonial);
     }catch(error){
         console.log({error});

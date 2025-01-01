@@ -7,9 +7,9 @@ const {checkAuthorization} = require("../../middlewares");
 router.post("/", checkAuthorization, createBroker);
 router.put("/:id", checkAuthorization, updateBroker);
 router.delete("/:id", checkAuthorization, deleteBroker);
-router.get("/broker-id/:id", checkAuthorization, getBroker);
-router.get("/", checkAuthorization, getBrokers);
-router.get("/recommended-brokers", checkAuthorization, getRecommendedBrokers);
+router.get("/broker-id/:id", getBroker);
+router.get("/", getBrokers);
+router.get("/recommended-brokers", getRecommendedBrokers);
 router.put("/broker-top/update", checkAuthorization, updateBrokerTop);
 
 module.exports = router;
