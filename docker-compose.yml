@@ -1,3 +1,4 @@
+version: "3"
 services:
   sky-trading-server:
     image: nodejs
@@ -10,7 +11,8 @@ services:
       - .:/usr/src/app
       - /usr/src/app/node_modules
     networks:
-      - sky-trading-networks
+      - sky-trading-network
+
 networks:
   sky-trading-network:
     driver: bridge
@@ -18,5 +20,3 @@ networks:
 
 volumes:
   node_modules:
-
-
