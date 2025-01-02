@@ -3,7 +3,9 @@ const dotenv = require('dotenv');
 
 dotenv.config();
 
-const PORT = process.env.PORT || 9090;
+const PORT = process.env.PORT || 8000;
+
+console.log("PORT: ", PORT);
 
 const swaggerOptions = {
   definition: {
@@ -14,10 +16,10 @@ const swaggerOptions = {
       description: 'Sky-Trading API documentation',
     },
     servers: [
-    //   {
-    //     url: `http://13.215.249.116:${PORT}`, // Production server
-    //     description: 'Dev Development server',
-    //   },
+      //   {
+      //     url: `http://13.215.249.116:${PORT}`, // Production server
+      //     description: 'Dev Development server',
+      //   },
       {
         url: `http://localhost:${PORT}`, // Update with your server's URL
         description: 'Local Development server',

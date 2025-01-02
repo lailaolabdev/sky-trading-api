@@ -1,0 +1,34 @@
+version: "3"
+services:
+  sky-trading-server:
+    image: nodejs
+    container_name: sky-trading-server
+    restart: always
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    networks:
+      - sky-trading-network
+  # redis:
+  #   image: 'redis:latest'
+  #   container_name: redis
+  #   hostname: redis
+  #   command: [ 'redis-server', '--include', '/usr/local/etc/redis/redis.conf' ]
+  #   ports:
+  #     - "6379:6379"
+  #   volumes:
+  #     - './redis/data:/var/lib/redis'
+  #     - './redis/redis.conf:/usr/local/etc/redis/redis.conf'
+  #   networks:
+  #     - sky-trading-network
+
+networks:
+  sky-trading-network:
+    driver: bridge
+    name: sky-trading-network
+
+volumes:
+  node_modules:
