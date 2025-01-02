@@ -16,10 +16,10 @@ const swaggerOptions = {
       description: 'Sky-Trading API documentation',
     },
     servers: [
-      //   {
-      //     url: `http://13.215.249.116:${PORT}`, // Production server
-      //     description: 'Dev Development server',
-      //   },
+      {
+        url: `http://54.179.246.119:${PORT}`, // Production server
+        description: 'Dev Development server',
+      },
       {
         url: `http://localhost:${PORT}`, // Update with your server's URL
         description: 'Local Development server',
