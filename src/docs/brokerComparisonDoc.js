@@ -344,6 +344,28 @@
  *     description: Endpoint to retrieve two broker comparison. Requires a Bearer token for authorization.
  *     tags:
  *       - Broker Comparison
+ *     parameters:
+ *       - name: broker1
+ *         in: path 
+ *         required: true
+ *         description: Broker 1 ID
+ *         schema:
+ *           type: string
+ *           example: "676a0c4f45759fcea9c1b4c9"
+ *       - name: broker2
+ *         in: path 
+ *         required: true
+ *         description: Broker 2 ID
+ *         schema:
+ *           type: string
+ *           example: "676a0c5045759fcea9c1b4cd"
+ *       - name: similar
+ *         in: query
+ *         required: false
+ *         description: To get two similar brokers
+ *         schema:
+ *           type: boolean
+ *           example: true
  *     responses:
  *       200:
  *         description: Articles retrieved successfully
@@ -420,6 +442,35 @@
  *     description: Endpoint to retrieve three broker comparison. Requires a Bearer token for authorization.
  *     tags:
  *       - Broker Comparison
+ *     parameters:
+ *       - name: broker1
+ *         in: path 
+ *         required: true
+ *         description: Broker 1 ID
+ *         schema:
+ *           type: string
+ *           example: "676a0c4f45759fcea9c1b4c9"
+ *       - name: broker2
+ *         in: path 
+ *         required: true
+ *         description: Broker 2 ID
+ *         schema:
+ *           type: string
+ *           example: "676a0c5045759fcea9c1b4cd"
+ *       - name: broker3
+ *         in: path 
+ *         required: true
+ *         description: Broker 3 ID
+ *         schema:
+ *           type: string
+ *           example: "676a0c6cddb19a69b5e27868"
+ *       - name: similar
+ *         in: query
+ *         required: false
+ *         description: To get three similar brokers
+ *         schema:
+ *           type: boolean
+ *           example: true
  *     responses:
  *       200:
  *         description: Articles retrieved successfully

@@ -43,26 +43,29 @@ const brokerComparinsonExits = async (req) => {
 
 const brokerComparisonsService = async (req, query) => {
     try {
-        const brokerComparisons = await brokerModel.find(query).sort({top: 1, createdAt: -1});
+        const brokerComparisons = await brokerModel.find(query).sort({top: 1, createdAt: -1}).lean();
         if (!brokerComparisons) {
             return {message: "BROKER_NOT_FOUND", data: null};
         }
 
         const brokersWithComparisons = await Promise.all(
             brokerComparisons.map(async (broker) => {
-                const comparisons = await comparisonModel.find({ brokerID: broker._id });
+                const comparisons = await comparisonModel.find({ brokerID: broker._id }).lean();
+                const formattedComparisons = comparisons.map((comparison) => ({
+                    ...comparison,
+                    similar: {},
+                  }));
                 return {
-                    ...broker.toObject(), // Convert the Mongoose object to plain JS object
-                    comparisons,          // Attach the related comparisons
+                    ...broker, 
+                    comparisons: formattedComparisons,          // Attach the related comparisons
                 };
             })
         );
 
         if(req.query.similar == "true" || req.query.similar == true){
-            const similarField = addSimilarField(brokersWithComparisons);
-
-            // console.log({similarField});
-            return {message: "GET_BROKER_COMPARISONS_SUCCESSFUL", data: brokersWithComparisons};
+            const brokerSimilar = addSimilarField(brokersWithComparisons);
+            
+            return {message: "GET_BROKER_COMPARISONS_SUCCESSFUL", data: brokerSimilar};
         }
         return {message: "GET_BROKER_COMPARISONS_SUCCESSFUL", data: brokersWithComparisons};
     } catch (error) {

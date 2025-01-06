@@ -1,7 +1,8 @@
+const mongoose = require('mongoose')
 const searchQuery = (req) => {
-    const broker1 = req.params.broker1 || '';
-    const broker2 = req.params.broker2 || '';
-    const broker3 = req.params.broker3 || '';
+    const broker1 = new mongoose.Types.ObjectId(req.params.broker1) || '';
+    const broker2 = new mongoose.Types.ObjectId(req.params.broker2) || '';
+    const broker3 = new mongoose.Types.ObjectId(req.params.broker3) || '';
 
     const searchQuery = {};
 

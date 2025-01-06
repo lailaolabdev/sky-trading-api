@@ -25,9 +25,10 @@ const loginService = async (req) => {
         user.role,
         user.userName
     );
+    user.password = undefined;
     return {
         message: "LOGIN_SUCCESSFUL",
-        data: accessToken
+        data: {user ,accessToken}
     };
 };
 
