@@ -8,10 +8,11 @@ const getStaffsService = async (req, searchQuery) => {
         const limit = parseInt(req.query.limit) || 25;
         const skip = parseInt(req.query.skip) || 0;
         // Aggregation query to fetch staff with pagination
+        console.log({searchQuery, limit, skip});
         const staffs = await userModel.aggregate([
             { $match: searchQuery },
-            { $limit: limit }, 
             { $skip: skip }, 
+            { $limit: limit }, 
             { $project: { password: 0 } }     
         ]);
 

@@ -38,8 +38,10 @@ const getTestimonialsService = async (req, query) => {
         const skip = parseInt(req.query.skip) || 0;
         const limit = parseInt(req.query.limit) || 25;
 
-        const testimonials = await testimonialModel.find(query).limit(limit).skip(skip).sort({createdAt: -1});
-        return {message: "GET_TESTIMONIALS_SUCCESSFUL", data: {totalTestimonials: testimonials.length, testimonials}}
+        const totalTestimonials = await testimonialModel.countDocuments(query);
+
+        const testimonials = await testimonialModel.find(query).skip(skip).limit(limit).sort({createdAt: -1});
+        return {message: "GET_TESTIMONIALS_SUCCESSFUL", data: {totalTestimonials, testimonials}}
     }catch(error){
         console.log({error});
         return {message: "GET_TESTIMONIALS_FAIL", data: null}

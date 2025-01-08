@@ -278,6 +278,22 @@
  *     description: Endpoint to retrieve all FAQ. Requires a Bearer token for authorization.
  *     tags:
  *       - FAQ
+ *     parameters:
+ *       - name: skip
+ *         in: query
+ *         required: false
+ *         description: Page number for pagination.
+ *         example: 0
+ *       - name: limit
+ *         in: query
+ *         required: false
+ *         description: Number of items per page for pagination.
+ *         example: 25
+ *       - name: search
+ *         in: query
+ *         required: false
+ *         description: Search by type, question, or answer.
+ *         example: "News"
  *     responses:
   *       200:
  *         description: FAQ created successfully
