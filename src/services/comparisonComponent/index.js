@@ -46,7 +46,7 @@ const updateComparisonComponentService = async (req) => {
 // check if the component is exists in the database
 const comparisonComponentExists = async (req) => {
     try {
-        const comparisonComponent = await comparisonComponentModel.findOne({component: req.body.component});
+        const comparisonComponent = await comparisonComponentModel.findOne({$or: [{component: req.body.component}, {componentNo: req.body.componentNo}]});
         if(comparisonComponent) {
             return {message: "COMPARISON_COMPONENT_EXISTS", isValid: false};
         }
@@ -59,7 +59,7 @@ const comparisonComponentExists = async (req) => {
 
 const getComparisonComponentService = async (req) => {
     try {
-        const comparisonComponent = await comparisonComponentModel.find({});
+        const comparisonComponent = await comparisonComponentModel.find({}).sort({componentNo: 1});
         return {message: "GET_COMPARISON_COMPONENT_SUCCESSFUL", data: comparisonComponent};
     } catch (error) {
         console.error("Error :", error);

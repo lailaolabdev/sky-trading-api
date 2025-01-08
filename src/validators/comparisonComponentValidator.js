@@ -8,6 +8,14 @@ const schema = Joi.object({
             "string.base": "COMPONENT_MUST_BE_A_STRING",
             "any.required": "COMPONENT_IS_REQUIRED",
         }),
+    componentNo: Joi.number()
+        .integer()
+        .required()
+        .messages({
+            "number.base": "COMPONENTNO_MUST_BE_A_NUMBER",
+            "number.integer": "COMPONENTNO_MUST_BE_AN_INTEGER",
+            "any.required": "COMPONENTNO_IS_REQUIRED",
+        }),
     items: Joi.array()
         .items(
             Joi.string().messages({

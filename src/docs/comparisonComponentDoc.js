@@ -2,8 +2,8 @@
  * @swagger
  * /api/v1/comparison-component:
  *   post:
- *     summary: Create a new article
- *     description: Endpoint to create a new article. Requires a Bearer token for authorization.
+ *     summary: Create a new comparison component
+ *     description: Endpoint to create a new comparison component. Requires a Bearer token for authorization.
  *     tags:
  *       - Comparison Components
  *     security:
@@ -17,18 +17,22 @@
  *             properties:
  *               component:
  *                 type: string
- *                 description: The main title or topic of the article in the default language.
+ *                 description: The main title or topic of the comparison component in the default language.
  *                 example: "Regulations"
+ *               componentNo:
+ *                 type: number
+ *                 description: The English translation of the topic.
+ *                 example: 1
  *               items:
  *                 type: array
- *                 description: A list of main titles or topics related to the article.
+ *                 description: A list of main titles or topics related to the comparison component.
  *                 items:
  *                   type: string
  *                   description: Each item in the array must be a string.
  *                 example: ["FCA", "ASIC", "NFA"]
  *     responses:
  *       200:
- *         description: Article created successfully
+ *         description: Comparison component created successfully
  *         content:
  *           application/json:
  *             schema:
@@ -36,7 +40,7 @@
  *               properties:
  *                 message:
  *                   type: string
- *                   example: ARTICLE_CREATED
+ *                   example: CREATE_COMPARISON_COMPONENT_SUCCESSFUL
  *       400:
  *         description: Bad request (missing or invalid field data)
  *         content:
@@ -74,8 +78,8 @@
  * @swagger
  * /api/v1/comparison-component/{id}:
  *   put:
- *     summary: Update an existing article
- *     description: Endpoint to update an article by ID. Requires a Bearer token for authorization.
+ *     summary: Update an existing comparison component
+ *     description: Endpoint to update an comparison component by ID. Requires a Bearer token for authorization.
  *     tags:
  *       - Comparison Components
  *     security:
@@ -84,7 +88,7 @@
  *       - name: id
  *         in: path
  *         required: true
- *         description: ID of the article to update
+ *         description: ID of the comparison component to update
  *         schema:
  *           type: string
  *           example: 1a2b3c4d5e6f
@@ -97,18 +101,18 @@
  *             properties:
  *               component:
  *                 type: string
- *                 description: The main title or topic of the article in the default language.
+ *                 description: The main title or topic of the comparison component in the default language.
  *                 example: "Regulations"
  *               items:
  *                 type: array
- *                 description: A list of main titles or topics related to the article.
+ *                 description: A list of main titles or topics related to the comparison component.
  *                 items:
  *                   type: string
  *                   description: Each item in the array must be a string.
  *                 example: ["FCA", "ASIC", "NFA"]
  *     responses:
  *       200:
- *         description: Article updated successfully
+ *         description: Comparison component updated successfully
  *         content:
  *           application/json:
  *             schema:
@@ -116,7 +120,7 @@
  *               properties:
  *                 message:
  *                   type: string
- *                   example: ARTICLE_UPDATED
+ *                   example: UPDATE_COMPARISON_COMPONENT_SUCCESSFUL
  *       400:
  *         description: Bad request (invalid field data)
  *         content:
@@ -154,8 +158,8 @@
  * @swagger
  * /api/v1/comparison-component/{id}:
  *   delete:
- *     summary: Delete an article
- *     description: Endpoint to delete an article by ID. Requires a Bearer token for authorization.
+ *     summary: Delete an comparison component
+ *     description: Endpoint to delete an comparison component by ID. Requires a Bearer token for authorization.
  *     tags:
  *       - Comparison Components
  *     security:
@@ -164,13 +168,13 @@
  *       - name: id
  *         in: path
  *         required: true
- *         description: ID of the article to delete
+ *         description: ID of the comparison component to delete
  *         schema:
  *           type: string
  *           example: 1a2b3c4d5e6f
  *     responses:
  *       200:
- *         description: Article deleted successfully
+ *         description: Comparison component deleted successfully
  *         content:
  *           application/json:
  *             schema:
@@ -178,7 +182,7 @@
  *               properties:
  *                 message:
  *                   type: string
- *                   example: ARTICLE_DELETED
+ *                   example: DELETE_COMPARISON_COMPONENT_SUCCESSFUL
  *       401:
  *         description: Unauthorized (missing or invalid Bearer token)
  *         content:
@@ -213,7 +217,7 @@
  *       - BearerAuth: []  # This references the defined security scheme
  *     responses:
  *       200:
- *         description: Articles retrieved successfully
+ *         description: Comparison components retrieved successfully
  *         content:
  *           application/json:
  *             schema:
@@ -221,42 +225,37 @@
  *               properties:
  *                 message:
  *                   type: string
- *                   example: GET_ARTICLES_SUCCESSFUL
+ *                   example: GET_COMPARISON_COMPONENT_SUCCESSFUL
  *                 data:
- *                   type: object
- *                   properties:
- *                     totalArticles:
- *                       type: integer
- *                       example: 1
- *                     articles:
- *                       type: array
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       _id:
+ *                         type: string
+ *                         example: 677dd49c955a0eb690736606
+ *                       component:
+ *                         type: string
+ *                         example: Regulations
+ *                       componentNo:
+ *                         type: integer
+ *                         example: 1
  *                       items:
- *                         type: object
- *                         properties:
- *                           id:
- *                             type: string
- *                             example: 1a2b3c4d5e6f
- *                           topic:
- *                             type: string
- *                             example: article topic 1
- *                           topicEN:
- *                             type: string
- *                             example: article topic EN 1
- *                           description:
- *                             type: string
- *                             example: article description 1
- *                           descriptionEN:
- *                             type: string
- *                             example: article description EN 1
- *                           createdAt:
- *                             type: string
- *                             format: date-time
- *                             example: 2023-01-01T00:00:00.000Z
- *                           updatedAt:
- *                             type: string
- *                             format: date-time
- *                             example: 2023-01-01T00:00:00.000Z
- * 
+ *                         type: array
+ *                         items:
+ *                           type: string
+ *                           example: FCA
+ *                       createdAt:
+ *                         type: string
+ *                         format: date-time
+ *                         example: 2025-01-08T01:27:56.132Z
+ *                       updatedAt:
+ *                         type: string
+ *                         format: date-time
+ *                         example: 2025-01-08T01:27:56.132Z
+ *                       __v:
+ *                         type: integer
+ *                         example: 0
  *       401:
  *         description: Unauthorized (missing or invalid Bearer token)
  *         content:
