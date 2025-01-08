@@ -7,35 +7,46 @@ const validateUpdateStaff = require("../../validators/updateStaffValidator");
 const {searchQuery} = require('./helper')
 
 const getStaffs = async (req, res) => {
-    const query =  searchQuery(req);
-    
-    const staffInfo = await getStaffsService(req, query);
-    if(!staffInfo) {
-        return res.status(404).json({ message: "STAFF_NOT_FOUND" });
+    try{
+        const query =  searchQuery(req);
+        
+        const staffInfo = await getStaffsService(req, query);
+        if(!staffInfo) {
+            return res.status(404).json({ message: "STAFF_NOT_FOUND" });
+        }
+        return res.status(200).json({ message: "GET_STAFFS_SUCCESSFUL", totalStaff: staffInfo.count, data: staffInfo.staffs});
+
+    } catch (error) {
+        console.log({error});
+        return res.status(500).json({ message: "INTERNAL_SERVER_ERROR" });
     }
-    return res.status(200).json({ message: "GET_STAFFS_SUCCESSFUL", totalStaff: staffInfo.count, data: staffInfo.staffs});
 }; 
 const getStaff = async (req, res) => {
-    const staffInfo = await getStaffService(req);
-    if(!staffInfo) {
-        return res.status(404).json({ message: "STAFF_NOT_FOUND" });
+    try{
+        const staffInfo = await getStaffService(req);
+        if(!staffInfo) {
+            return res.status(404).json({ message: "STAFF_NOT_FOUND" });
+        }
+        return res.status(200).json({ message: "GET_STAFFS_SUCCESSFUL", data: staffInfo});
+
+    } catch (error) {
+        console.log({error});
+        return res.status(500).json({ message: "INTERNAL_SERVER_ERROR" });
     }
-    return res.status(200).json({ message: "GET_STAFFS_SUCCESSFUL", data: staffInfo});
 };
 
 const addStaff = async (req, res) => {
-    const {isValid, errors} = validateStaff(req.body);
-    
-    if (!isValid) {
-        return res.status(400).json({ message: errors[0].message });
-    }
-    
-    const isStaffExisted = await staffExisted(req.body);
-    if (isStaffExisted) {
-        return res.status(400).json({ message: "STAFF_ALREADY_EXISTED" });
-    }
-
     try {
+        const {isValid, errors} = validateStaff(req.body);
+        
+        if (!isValid) {
+            return res.status(400).json({ message: errors[0].message });
+        }
+        
+        const isStaffExisted = await staffExisted(req.body);
+        if (isStaffExisted) {
+            return res.status(400).json({ message: "STAFF_ALREADY_EXISTED" });
+        }
         const addStaff = await addStaffService(req);
 
         console.log({addStaff});
@@ -75,11 +86,17 @@ const updateStaff = async (req, res) => {
 };
 
 const deleteStaff = async (req, res) => {
-    const staffInfo = await deleteStaffService(req);
-    if(!staffInfo.data) {
-        return res.status(404).json({ message: "STAFF_NOT_FOUND" });
+    try{
+
+        const staffInfo = await deleteStaffService(req);
+        if(!staffInfo.data) {
+            return res.status(404).json({ message: "STAFF_NOT_FOUND" });
+        }
+        return res.status(200).json(staffInfo);
+    }catch(error){
+        console.log({error});
+        return res.status(500).json({ message: "INTERNAL_SERVER_ERROR" });
     }
-    return res.status(200).json(staffInfo);
 };
 
 module.exports = { getStaffs, addStaff, getStaff, updateStaff, deleteStaff };
