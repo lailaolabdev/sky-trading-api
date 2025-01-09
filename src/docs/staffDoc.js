@@ -19,6 +19,10 @@
  *                 type: string
  *                 description: The username of the Staff.
  *                 example: "JohnDoe"
+ *               profileImage: 
+ *                 type: string
+ *                 description: The profile image of the Staff.
+ *                 example: "profile.jpg"
  *               email:
  *                 type: string
  *                 description: The email of the Staff.
@@ -257,6 +261,10 @@
  *                   type: string
  *                   description: The username of the Staff.
  *                   example: "JohnDoe"
+ *                 profileImage: 
+ *                   type: string
+ *                   description: The profile image of the Staff.
+ *                   example: "profile.jpg"
  *                 email:
  *                   type: string
  *                   description: The email of the Staff.
@@ -343,6 +351,10 @@
  *                   type: string
  *                   description: The username of the Staff.
  *                   example: "JohnDoe"
+ *                 profileImage: 
+ *                   type: string
+ *                   description: The profile image of the Staff.
+ *                   example: "profile.jpg"
  *                 email:
  *                   type: string
  *                   description: The email of the Staff.
