@@ -5,14 +5,12 @@ const staffSchema = Joi.object({
     userName: Joi.string()
         .min(3)
         .messages({
-            'string.empty': 'USERNAME_REQUIRED',
             'string.min': 'USERNAME_SHOULD_MORE_THAN_3',
         }),
 
     email: Joi.string()
         .email()
         .messages({
-            'string.empty': 'EMAIL_REQUIRED',
             'string.email': 'EMAIL_INVALID',
         }),
 
@@ -23,7 +21,6 @@ const staffSchema = Joi.object({
     password: Joi.string()
         .min(8)
         .messages({
-            'string.empty': 'PASSWORD_REQUIRED',
             'string.min': 'PASSWORD_SHOULD_MORE_THAN_8',
         }),
     updatedBy: Joi.string()

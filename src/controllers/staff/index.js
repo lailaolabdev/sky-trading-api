@@ -67,7 +67,7 @@ const updateStaff = async (req, res) => {
             return res.status(400).json({ message });
         }
         // const id = req.params.id;
-        const isStaffExisted = await staffExisted(req.body);
+        const isStaffExisted = await staffExisted(req);
         if (isStaffExisted) {
             return res.status(400).json({ message: "STAFF_ALREADY_EXISTED" });
         }

@@ -78,14 +78,18 @@ const deleteStaffService = async (req) => {
     }
 };
 
-const staffExisted = async (staff) => {  
+const staffExisted = async (req) => {  
     try {
+        const staff = req.body;
+        console.log(req.params.id);
         const existingStaff = await userModel.findOne({
+            _id: { $ne: req.params.id },
             $or: [
                 { email: staff.email },
                 { userName: staff.userName }
             ]
         });
+        console.log(existingStaff);
         return existingStaff ? true : false;  // Return true if staff exists, false otherwise
     } catch (error) {
         console.error('Error checking staff existence:', error);
