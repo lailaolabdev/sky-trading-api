@@ -5,23 +5,25 @@ on:
     branches:
       - dev-setup
 
-jobs:     # each job have different steps
-  build-deploy: 
-    name: Build and deploy Sky-Trading-API   # the name of the job
-    runs-on: ubuntu-latest      # the operating system the job will be run on
+jobs: # Define jobs in the workflow
+  build-deploy:
+    name: Build and deploy Sky-Trading-API # Name of the job
+    runs-on: ubuntu-latest # The operating system for the job
     steps:
-      - name: Checkout    # the name of teh step 
-        uses: actions/checkout@v3  # uses: to run some actions # 
+      # Step 1: Checkout the code
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      # Step 2: Setup Node.js environment
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
           node-version: '20'
+
+      # Step 3: Install Node.js dependencies
       - name: Install dependencies
         run: npm install
 
-      - name: Build the api using docker
-        run: sudo docker compose up -d --build
-
-      
-
-      
+      # Step 4: Build and deploy the API using Docker
+      - name: Build the API using Docker
+        run: docker-compose up -d --build
