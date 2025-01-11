@@ -3,7 +3,7 @@ name: CI & CD Sky-Trading-API
 on:
   push:
     branches:
-      - det-setup
+      - dev-setup
 
 jobs:     # each job have different steps
   build-deploy: 
@@ -15,6 +15,13 @@ jobs:     # each job have different steps
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version: '20'
       - name: Install dependencies
         run: npm install
+
+      - name: Build the api using docker
+        run: sudo docker compose up -d --build
+
+      
+
+      
