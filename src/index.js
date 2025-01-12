@@ -26,7 +26,7 @@ const testimonialRoutes = require("./routes/testimonial");
 
 /// routes endpoints
 app.get("/", (req, res) => {
-    res.send("Server is running...");
+    res.send("Sky-Trading-API Server is running...");
 });
 app.use("/api/v1/staff", staffRoutes);
 app.use("/api/v1/login", loginRoutes);
@@ -45,5 +45,5 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 const PORT = process.env.PORT || 8000;
 const server = app.listen(PORT, () => {
-    console.log(`Sky-Trading-API server is running... on port ${PORT}`);
+    console.log(`Server is running on port ${PORT}`);
 })
