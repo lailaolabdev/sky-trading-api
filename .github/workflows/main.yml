@@ -24,6 +24,8 @@ jobs:
           port: 22
           script: |
             cd /home/ubuntu/sky-trading-api
+            sudo git fetch
+            sudo git checkout dev-setup
             sudo git pull origin dev-setup
             docker-compose down
             docker-compose up -d --build
