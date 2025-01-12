@@ -23,7 +23,7 @@ jobs:
           key: ${{ secrets.SERVER_PRIVATE_KEY }}
           port: 22
           script: |
-            cd /sky-trading-api
+            cd /home/ubuntu/sky-trading-api
             git pull origin dev-setup
             docker-compose down
             docker-compose up -d --build
