@@ -21,7 +21,7 @@ jobs:
           host: ${{ secrets.SERVER_IP }}
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SERVER_PRIVATE_KEY }}
-          port: 8000
+          port: 22
           script: |
             cd /sky-trading-api
             git pull origin dev-setup
