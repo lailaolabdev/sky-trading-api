@@ -20,7 +20,7 @@ jobs:
         with:
           host: ${{ secrets.SERVER_IP }}
           username: ${{ secrets.SERVER_USER }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          key: ${{ secrets.SERVER_PRIVATE_KEY }}
           port: 8000
           script: |
             cd /path/to/project
