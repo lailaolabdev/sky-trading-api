@@ -89,7 +89,7 @@ const getBrokersService = async (req, query) => {
         // Step 2: For each broker, fetch comparisons that reference the brokerID
         const brokersWithComparisons = await Promise.all(
             brokers.map(async (broker) => {
-                const comparisons = await comparisonModel.find({ brokerID: broker._id });
+                const comparisons = await comparisonModel.findOne({ brokerID: broker._id });
                 return {
                     ...broker.toObject(), // Convert the Mongoose object to plain JS object
                     comparisons,          // Attach the related comparisons

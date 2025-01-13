@@ -25,7 +25,7 @@ const updateTestimonialService = async (req) => {
 
 const getTestimonialService = async (req) => {
     try{
-        const testimonial = await testimonialModel.findById(req.params.id);
+        const testimonial = await testimonialModel.findById(req.params.id).populate('brokerID').exec();
         return {message: "GET_TESTIMONIAL_SUCCESSFUL", data: testimonial}
     }catch(error){
         console.log({error});
@@ -40,7 +40,7 @@ const getTestimonialsService = async (req, query) => {
 
         const totalTestimonials = await testimonialModel.countDocuments(query);
 
-        const testimonials = await testimonialModel.find(query).skip(skip).limit(limit).sort({createdAt: -1});
+        const testimonials = await testimonialModel.find(query).populate('brokerID').skip(skip).limit(limit).sort({createdAt: -1}).exec();
         return {message: "GET_TESTIMONIALS_SUCCESSFUL", data: {totalTestimonials, testimonials}}
     }catch(error){
         console.log({error});

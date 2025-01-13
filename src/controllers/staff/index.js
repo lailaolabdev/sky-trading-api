@@ -63,18 +63,24 @@ const addStaff = async (req, res) => {
 const updateStaff = async (req, res) => {
     try {
         const {isValid, message} = validateUpdateStaff(req.body);
+        console.log("a")
         if (!isValid) {
+            console.log("b")
             return res.status(400).json({ message });
         }
+        console.log("c")
         // const id = req.params.id;
         const isStaffExisted = await staffExisted(req);
         if (isStaffExisted) {
+            console.log("d")
             return res.status(400).json({ message: "STAFF_ALREADY_EXISTED" });
         }
-
+        console.log("e")
+        
         const updatingStaff = await updateStaffService(req);
-
+        
         if (!updatingStaff.data) {
+            console.log("f")
             return res.status(500).json({ message: updatingStaff.message });
         }
 

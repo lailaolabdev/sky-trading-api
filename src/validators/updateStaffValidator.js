@@ -19,10 +19,11 @@ const staffSchema = Joi.object({
     profileImage: Joi.string(), // Already optional
 
     password: Joi.string()
-        .min(8)
+        .allow('') // Allow empty strings
         .messages({
-            'string.min': 'PASSWORD_SHOULD_MORE_THAN_8',
+            "string.base": "PASSWORD_MUST_BE_A_STRING",
         }),
+
     updatedBy: Joi.string()
         .pattern(/^[0-9a-fA-F]{24}$/)
         .required()
@@ -31,16 +32,16 @@ const staffSchema = Joi.object({
             "string.pattern.base": "UPDATEDBY_MUST_BE_A_VALID_OBJECTID",
             "any.required": "UPDATEDBY_IS_REQUIRED",
         }),
-})
-
+});
 
 const validateStaff = (staff) => {
     const { error } = staffSchema.validate(staff);
 
     if (error) {
-        return { isValid: false, message: error.details[0].message  };
+        return { isValid: false, message: error.details[0].message };
     }
 
     return { isValid: true, message: "VALID_STAFF_DATA" };
-}
+};
+
 module.exports = validateStaff;
