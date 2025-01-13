@@ -34,11 +34,9 @@
  *                       description: The question being asked.
  *                       example: "What is your favorite color?"
  *                     answers:
- *                       type: array
- *                       description: A list of answers for the question.
- *                       items:
- *                         type: string
- *                       example: ["Blue", "Green", "Red"]
+ *                       type: string
+ *                       description: The answers for the question.
+ *                       example: "answer the question"
  *               questionAnswerEN:
  *                 type: array
  *                 description: A list of questions and answers in English.
@@ -50,11 +48,9 @@
  *                       description: The question being asked in English.
  *                       example: "What is your favorite color?"
  *                     answers:
- *                       type: array
- *                       description: A list of answers for the question in English.
- *                       items:
- *                         type: string
- *                       example: ["he", "dj"]
+ *                       type: string
+ *                       description: The answers for the question.
+ *                       example: "answer updating"
  *               createdBy:
  *                 type: string
  *                 description: The ID of the user who created the FAQ.
@@ -149,11 +145,9 @@
  *                       description: The question being asked.
  *                       example: "What is your favorite color?"
  *                     answers:
- *                       type: array
- *                       description: A list of answers for the question.
- *                       items:
- *                         type: string
- *                       example: ["Blue", "Green", "Red"]
+ *                       type: string
+ *                       description: The answers for the question.
+ *                       example: "answer updating"
  *               questionAnswerEN:
  *                 type: array
  *                 description: A list of questions and answers in English.
@@ -165,11 +159,9 @@
  *                       description: The question being asked in English.
  *                       example: "What is your favorite color?"
  *                     answers:
- *                       type: array
- *                       description: A list of answers for the question in English.
- *                       items:
- *                         type: string
- *                       example: ["he", "dj"]
+ *                       type: string
+ *                       description: The answers for the question.
+ *                       example: "answer updating"
  *               updatedBy:
  *                 type: string
  *                 description: The ID of the user who created the FAQ.

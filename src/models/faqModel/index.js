@@ -12,7 +12,7 @@ const faqSchema = new mongoose.Schema({
   questionAnswerEN: [
     {
       question: { type: String },
-      answers: { type: [String] },
+      answers: { type: String },
     },
   ],
   createdAt: { type: Date, default: Date.now },

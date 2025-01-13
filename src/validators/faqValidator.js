@@ -24,15 +24,11 @@ const faqsSchema = Joi.object({
                 'string.base': 'QUESTION_MUST_BE_A_STRING',
                 'any.required': 'QUESTIONEN_IS_REQUIRED',
             }),
-            answers: Joi.array()
-            .items(Joi.string().required().messages({
-                'string.base': 'ANSWERS_MUST_BE_AN_ARRAY_OF_STRINGS',
-                'any.required': 'ANSWERSEN_IS_REQUIRED',
-            }))
+            answers: Joi.string()
             .required()
             .messages({
+                'string.base': 'ANSWERS_MUST_BE_AN_STRINGS',
                 'any.required': 'ANSWERS_IS_REQUIRED',
-                'array.base': 'ANSWERS_MUST_BE_AN_ARRAY_OF_STRINGS',
             }),
         })
         )
@@ -50,15 +46,11 @@ const faqsSchema = Joi.object({
                 'string.base': 'QUESTIONEN_MUST_BE_A_STRING',
                 'any.required': 'QUESTIONEN_IS_REQUIRED',
               }), 
-            answers: Joi.array()
-              .items(Joi.string().required().messages({
-                'string.base': 'ANSWERSEN_MUST_BE_AN_ARRAY_OF_STRINGS',
-                'any.required': 'ANSWERSEN_IS_REQUIRED',
-              })) 
+            answers: Joi.string()
               .required()
               .messages({
+                'string.base': 'ANSWERSEN_MUST_BE_AN_STRINGS',
                 'any.required': 'ANSWERSEN_IS_REQUIRED',
-                'array.base': 'ANSWERSEN_MUST_BE_AN_ARRAY_OF_STRINGS',
               }),
           })
         )

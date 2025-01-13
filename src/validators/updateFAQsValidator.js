@@ -18,14 +18,9 @@ const faqsSchema = Joi.object({
                     .messages({
                         "string.base": "QUESTION_MUST_BE_A_STRING",
                     }),
-                answers: Joi.array()
-                    .items(
-                        Joi.string().messages({
-                            "string.base": "ANSWERS_MUST_BE_AN_ARRAY_OF_STRINGS",
-                        })
-                    )
+                answers: Joi.string()
                     .messages({
-                        "array.base": "ANSWERS_MUST_BE_AN_ARRAY_OF_STRINGS",
+                        "string.base": "ANSWERS_MUST_BE_ANSTRINGS",
                     }),
             })
         )
@@ -40,14 +35,9 @@ const faqsSchema = Joi.object({
                     .messages({
                         "string.base": "QUESTIONEN_MUST_BE_A_STRING",
                     }),
-                answers: Joi.array()
-                    .items(
-                        Joi.string().messages({
-                            "string.base": "ANSWERSEN_MUST_BE_AN_ARRAY_OF_STRINGS",
-                        })
-                    )
+                answers: Joi.string()
                     .messages({
-                        "array.base": "ANSWERSEN_MUST_BE_AN_ARRAY_OF_STRINGS",
+                        'string.base': "ANSWERSEN_MUST_BE_AN_STRINGS",
                     }),
             })
         )
