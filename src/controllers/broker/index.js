@@ -1,8 +1,9 @@
 const {createBrokersService, brokerExists, updateBrokerService, getBrokerService, getBrokersService, deleteBrokerService, getRecommendedBrokersService, updateBrokerTopService} = require('../../services/broker');
-const validateBrokerData = require('../../validators/brokerValidator');
+const { validateBrokerData, validateBrokerDataWithComparison } = require('../../validators/brokerValidator');
 const updateBrokerValidator = require('../../validators/updateBrokerValidator');
 const {searchQuery} = require('./helper');
 const validateTopBrokersData = require('../../validators/updateTopBrokerValidator');
+const {createComparisonService, updateComparisonService} = require('../../services/brokerComparison');
 
 const createBroker = async (req, res) => {
     try {
@@ -20,6 +21,46 @@ const createBroker = async (req, res) => {
         if(!broker.data) {
             return res.status(400).json({message: broker.message});
         }
+        return res.status(200).json(broker);
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({message: error.message});
+    }
+}
+
+const createBrokerWithComparison = async (req, res) => {
+    try {
+        let newReq = {
+            broker: {
+                body: req.body.broker
+            },
+            comparison: {
+                body: req.body.comparison,
+            }
+        }
+        const checkBroker = validateBrokerDataWithComparison(req.body.broker);
+        if(!checkBroker.isValid) {
+            return res.status(400).json({message: checkBroker.message});
+        }
+
+        const isBrokerExisted = await brokerExists(newReq.broker);
+        if(!isBrokerExisted.isValid) {
+            return res.status(400).json({message: isBrokerExisted.message});
+        }
+
+        const broker = await createBrokersService(newReq.broker);
+        if(!broker.data) {
+            return res.status(400).json({message: broker.message});
+        }
+
+        // Create Comparison
+        newReq.comparison.body = { ...newReq.comparison.body, brokerID: broker.data }
+        const createComparison = await createComparisonService(newReq.comparison);
+        console.log("newReq.comparison", newReq.comparison)
+        if(!createComparison.data) {
+            return res.status(400).json({message: createComparison.message});
+        }
+
         return res.status(200).json(broker);
     } catch (error) {
         console.log(error);
@@ -113,4 +154,4 @@ const updateBrokerTop = async (req, res) => {
         return res.status(500).json({message: error.message});
     }
 }
-module.exports = {createBroker, updateBroker, getBroker, getBrokers, deleteBroker, getRecommendedBrokers, updateBrokerTop}; 
+module.exports = {createBroker, createBrokerWithComparison, updateBroker, getBroker, getBrokers, deleteBroker, getRecommendedBrokers, updateBrokerTop}; 

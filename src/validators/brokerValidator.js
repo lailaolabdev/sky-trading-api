@@ -83,4 +83,14 @@ const validateBrokerData = (req) => {
     return { isValid: true, message: "VALID_BROKER_DATA"};
 };
 
-module.exports = validateBrokerData;
+const validateBrokerDataWithComparison = (req) => {
+    const { error, value } = schema.validate(req, { abortEarly: true });
+
+    if (error) {
+        return { isValid: false, message: error.details[0].message };
+    }
+
+    return { isValid: true, message: "VALID_BROKER_DATA"};
+};
+
+module.exports = { validateBrokerData, validateBrokerDataWithComparison };
