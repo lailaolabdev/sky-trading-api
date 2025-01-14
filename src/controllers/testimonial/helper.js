@@ -2,6 +2,7 @@ const searchQuery = (req) => {
 
     const search = req.query.search || '';
     const date = req.query.date || '';
+    const brokerID = req.query.brokerID || '';
 
     const searchQuery = {};
 
@@ -11,6 +12,10 @@ const searchQuery = (req) => {
             { userNameEN: { $regex: new RegExp(search, 'i') } },
             { reviews: { $regex: new RegExp(search, 'i') } }
         ];
+    }
+    
+    if (brokerID) {
+        searchQuery.brokerID = brokerID;
     }
 
     if (date) {

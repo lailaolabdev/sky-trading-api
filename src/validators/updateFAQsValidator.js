@@ -18,7 +18,7 @@ const faqsSchema = Joi.object({
                     .messages({
                         "string.base": "QUESTION_MUST_BE_A_STRING",
                     }),
-                answers: Joi.string()
+                answer: Joi.string()
                     .messages({
                         "string.base": "ANSWERS_MUST_BE_ANSTRINGS",
                     }),
@@ -35,7 +35,7 @@ const faqsSchema = Joi.object({
                     .messages({
                         "string.base": "QUESTIONEN_MUST_BE_A_STRING",
                     }),
-                answers: Joi.string()
+                answer: Joi.string()
                     .messages({
                         'string.base': "ANSWERSEN_MUST_BE_AN_STRINGS",
                     }),

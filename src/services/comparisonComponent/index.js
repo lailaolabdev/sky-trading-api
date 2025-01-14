@@ -57,9 +57,9 @@ const comparisonComponentExists = async (req) => {
     }
 }
 
-const getComparisonComponentService = async (req) => {
+const getComparisonComponentService = async (req, query) => {
     try {
-        const comparisonComponent = await comparisonComponentModel.find({}).sort({componentNo: 1});
+        const comparisonComponent = await comparisonComponentModel.find(query).sort({componentNo: 1});
         return {message: "GET_COMPARISON_COMPONENT_SUCCESSFUL", data: comparisonComponent};
     } catch (error) {
         console.error("Error :", error);

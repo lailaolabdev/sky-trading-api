@@ -25,7 +25,7 @@
  *                 example: "NEWS"
  *               questionAnswer:
  *                 type: array
- *                 description: A list of questions and answers.
+ *                 description: A list of questions and answer.
  *                 items:
  *                   type: object
  *                   properties:
@@ -33,13 +33,13 @@
  *                       type: string
  *                       description: The question being asked.
  *                       example: "What is your favorite color?"
- *                     answers:
+ *                     answer:
  *                       type: string
- *                       description: The answers for the question.
+ *                       description: The answer for the question.
  *                       example: "answer the question"
  *               questionAnswerEN:
  *                 type: array
- *                 description: A list of questions and answers in English.
+ *                 description: A list of questions and answer in English.
  *                 items:
  *                   type: object
  *                   properties:
@@ -47,9 +47,9 @@
  *                       type: string
  *                       description: The question being asked in English.
  *                       example: "What is your favorite color?"
- *                     answers:
+ *                     answer:
  *                       type: string
- *                       description: The answers for the question.
+ *                       description: The answer for the question.
  *                       example: "answer updating"
  *               createdBy:
  *                 type: string
@@ -136,7 +136,7 @@
  *                 example: "NEWS"
  *               questionAnswer:
  *                 type: array
- *                 description: A list of questions and answers.
+ *                 description: A list of questions and answer.
  *                 items:
  *                   type: object
  *                   properties:
@@ -144,13 +144,13 @@
  *                       type: string
  *                       description: The question being asked.
  *                       example: "What is your favorite color?"
- *                     answers:
+ *                     answer:
  *                       type: string
- *                       description: The answers for the question.
+ *                       description: The answer for the question.
  *                       example: "answer updating"
  *               questionAnswerEN:
  *                 type: array
- *                 description: A list of questions and answers in English.
+ *                 description: A list of questions and answer in English.
  *                 items:
  *                   type: object
  *                   properties:
@@ -158,9 +158,9 @@
  *                       type: string
  *                       description: The question being asked in English.
  *                       example: "What is your favorite color?"
- *                     answers:
+ *                     answer:
  *                       type: string
- *                       description: The answers for the question.
+ *                       description: The answer for the question.
  *                       example: "answer updating"
  *               updatedBy:
  *                 type: string
@@ -308,7 +308,7 @@
  *                   example: "NEWS"
  *                 questionAnswer:
  *                   type: array
- *                   description: List of questions and answers.
+ *                   description: List of questions and answer.
  *                   items:
  *                     type: object
  *                     properties:
@@ -316,9 +316,9 @@
  *                         type: string
  *                         description: The question being asked.
  *                         example: "What is your favorite color and the best color?"
- *                       answers:
+ *                       answer:
  *                         type: array
- *                         description: A list of answers for the question.
+ *                         description: A list of answer for the question.
  *                         items:
  *                           type: string
  *                         example: ["Blue", "Green", "Red"]
@@ -328,7 +328,7 @@
  *                         example: "6765c36285b6dda3ec5ce2dd"
  *                 questionAnswerEN:
  *                   type: array
- *                   description: List of questions and answers in English.
+ *                   description: List of questions and answer in English.
  *                   items:
  *                     type: object
  *                     properties:
@@ -336,9 +336,9 @@
  *                         type: string
  *                         description: The question being asked in English.
  *                         example: "What is your favorite color?"
- *                       answers:
+ *                       answer:
  *                         type: array
- *                         description: A list of answers for the question in English.
+ *                         description: A list of answer for the question in English.
  *                         items:
  *                           type: string
  *                         example: ["he", "dj"]
@@ -429,7 +429,7 @@
  *                   example: "NEWS"
  *                 questionAnswer:
  *                   type: array
- *                   description: List of questions and answers.
+ *                   description: List of questions and answer.
  *                   items:
  *                     type: object
  *                     properties:
@@ -437,9 +437,9 @@
  *                         type: string
  *                         description: The question being asked.
  *                         example: "What is your favorite color and the best color?"
- *                       answers:
+ *                       answer:
  *                         type: array
- *                         description: A list of answers for the question.
+ *                         description: A list of answer for the question.
  *                         items:
  *                           type: string
  *                         example: ["Blue", "Green", "Red"]
@@ -449,7 +449,7 @@
  *                         example: "6765c36285b6dda3ec5ce2dd"
  *                 questionAnswerEN:
  *                   type: array
- *                   description: List of questions and answers in English.
+ *                   description: List of questions and answer in English.
  *                   items:
  *                     type: object
  *                     properties:
@@ -457,9 +457,9 @@
  *                         type: string
  *                         description: The question being asked in English.
  *                         example: "What is your favorite color?"
- *                       answers:
+ *                       answer:
  *                         type: array
- *                         description: A list of answers for the question in English.
+ *                         description: A list of answer for the question in English.
  *                         items:
  *                           type: string
  *                         example: ["he", "dj"]

@@ -5,7 +5,7 @@ const {createComparisonComponent, deleteComparisonComponent, updateComparisonCom
 const {checkAuthorization} = require("../../middlewares")
 
 router.post("/", checkAuthorization, createComparisonComponent);
-router.get("/", checkAuthorization, getComparisonComponent);
+router.get("/", getComparisonComponent);
 router.delete("/:id", checkAuthorization, deleteComparisonComponent);
 router.put("/:id", checkAuthorization, updateComparisonComponent);
 

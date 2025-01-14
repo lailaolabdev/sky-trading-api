@@ -50,6 +50,7 @@ const brokerExists = async (req) => {
 // update broker by id
 const updateBrokerService = async (req) => {
     try{
+        console.log("req.params.id", req)
         req.body.updatedAt = new Date();
         const updatedBroker = await brokerModel.findByIdAndUpdate(req.params.id, req.body, {new: true});
         if(!updatedBroker) {
@@ -57,6 +58,7 @@ const updateBrokerService = async (req) => {
         }
         return {message: "UPDATE_BROKER_SUCCESSFUL", data: updatedBroker._id};
     } catch (error) {
+        console.log("error update broker:", error)
         return {message: "INTERNAL_SERVER_ERROR", data: null};
     }
 }
@@ -130,7 +132,16 @@ const deleteBrokerService = async (req) => {
 const getRecommendedBrokersService = async (req) => {
     try {
         const recommendedBrokers = await brokerModel.find({isRecommended: true});
-        return {message: "GET_RECOMMENDED_BROKERS_SUCCESSFUL", data: recommendedBrokers};
+        const brokersWithComparisons = await Promise.all(
+            recommendedBrokers.map(async (broker) => {
+                const comparisons = await comparisonModel.findOne({ brokerID: broker._id });
+                return {
+                    ...broker.toObject(), // Convert the Mongoose object to plain JS object
+                    comparisons,          // Attach the related comparisons
+                };
+            })
+        );
+        return {message: "GET_RECOMMENDED_BROKERS_SUCCESSFUL", data: brokersWithComparisons};
     } catch (error) {
         console.error("Error updating broker data:", error);
         return {message: "INTERNAL_SERVER_ERROR", data: null};

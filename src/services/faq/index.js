@@ -24,7 +24,7 @@ const getFaqsService = async (req, query) => {
 
 const getFaqService = async (req) => {
     try{
-        const faq = await faqModel.findById(req.params.id);
+        const faq = await faqModel.findById(req.params.id).select('-questionAnswer._id -questionAnswer.answers -questionAnswerEN._id -questionAnswerEN.answers').exec();
         if(!faq) {
             return {message: "FAQ_NOT_FOUND", data: null};
         }

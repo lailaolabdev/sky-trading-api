@@ -49,7 +49,7 @@
  *                 type: number
  *                 description: The minimum deposit required by the broker.
  *                 example: 200000
- *               depositAndWithdrawFees:
+ *               depositAndWithdrawFee:
  *                 type: string
  *                 description: The fees for deposit and withdrawal.
  *                 example: "1/2"
@@ -77,11 +77,11 @@
  *                 type: string
  *                 description: Details about the customer support provided by the broker.
  *                 example: "dfkljfd"
- *               introduceBrokerFees:
+ *               introduceBrokerFee:
  *                 type: string
  *                 description: Details about the fees for introducing brokers.
  *                 example: "dlfj"
- *               introduceBrokerFeesEN:
+ *               introduceBrokerFeeEN:
  *                 type: string
  *                 description: The English version of the fees for introducing brokers.
  *                 example: "ldfjde"
@@ -227,7 +227,7 @@
  *                 type: number
  *                 description: The minimum deposit required by the broker.
  *                 example: 200000
- *               depositAndWithdrawFees:
+ *               depositAndWithdrawFee:
  *                 type: string
  *                 description: The fees for deposit and withdrawal.
  *                 example: "1/2"
@@ -255,11 +255,11 @@
  *                 type: string
  *                 description: Details about the customer support provided by the broker.
  *                 example: "dfkljfd"
- *               introduceBrokerFees:
+ *               introduceBrokerFee:
  *                 type: string
  *                 description: Details about the fees for introducing brokers.
  *                 example: "dlfj"
- *               introduceBrokerFeesEN:
+ *               introduceBrokerFeeEN:
  *                 type: string
  *                 description: The English version of the fees for introducing brokers.
  *                 example: "ldfjde"

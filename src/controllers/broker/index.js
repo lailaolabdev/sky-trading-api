@@ -3,7 +3,8 @@ const { validateBrokerData, validateBrokerDataWithComparison } = require('../../
 const updateBrokerValidator = require('../../validators/updateBrokerValidator');
 const {searchQuery} = require('./helper');
 const validateTopBrokersData = require('../../validators/updateTopBrokerValidator');
-const {createComparisonService, updateComparisonService} = require('../../services/brokerComparison');
+const {createComparisonService, updateComparisonService, updateComparisonWithBrokerService} = require('../../services/brokerComparison');
+const comparisonModel = require("../../models/comparisonModel/index");
 
 const createBroker = async (req, res) => {
     try {
@@ -83,6 +84,52 @@ const updateBroker = async (req, res) => {
         return res.status(500).json({message: error.message});
     }
 }
+const updateBrokerWithComparison = async (req, res) => {
+    try {
+        let newReq = {
+            broker: {
+                body: req.body.broker,
+                params: req.params,
+            },
+            comparison: {
+                body: req.body.comparison,
+            }
+        }
+        console.log("a")
+        
+        const {isValid, message} = updateBrokerValidator(newReq.broker);
+        console.log("b")
+        if(!isValid) {
+            console.log("c")
+            return res.status(400).json({message});
+        }
+        console.log("e")
+        const broker = await updateBrokerService(newReq.broker);
+        console.log("f")
+        if(!broker.data) {
+            console.log("i")
+            return res.status(400).json({message: broker.message});
+        }
+        
+        console.log("j")
+        // Update Comparison
+        const comparison = await comparisonModel.findOne({ brokerID: broker.data });
+        if (comparison) {
+            console.log("k")
+            const updateComparison = await updateComparisonWithBrokerService(newReq.comparison, comparison._id);
+            if(!updateComparison.data) {
+                console.log("l")
+                return res.status(400).json({message: updateComparison.message});
+            }
+        }
+        console.log("m")
+        
+        return res.status(200).json(broker);
+    } catch (error) {
+        console.log("error => ", error)
+        return res.status(500).json({message: error.message});
+    }
+}
 
 // Get broker by id
 const getBroker = async (req, res) => {
@@ -154,4 +201,4 @@ const updateBrokerTop = async (req, res) => {
         return res.status(500).json({message: error.message});
     }
 }
-module.exports = {createBroker, createBrokerWithComparison, updateBroker, getBroker, getBrokers, deleteBroker, getRecommendedBrokers, updateBrokerTop}; 
+module.exports = {createBroker, createBrokerWithComparison, updateBroker, updateBrokerWithComparison, getBroker, getBrokers, deleteBroker, getRecommendedBrokers, updateBrokerTop}; 

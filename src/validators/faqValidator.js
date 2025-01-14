@@ -24,7 +24,7 @@ const faqsSchema = Joi.object({
                 'string.base': 'QUESTION_MUST_BE_A_STRING',
                 'any.required': 'QUESTIONEN_IS_REQUIRED',
             }),
-            answers: Joi.string()
+            answer: Joi.string()
             .required()
             .messages({
                 'string.base': 'ANSWERS_MUST_BE_AN_STRINGS',
@@ -46,7 +46,7 @@ const faqsSchema = Joi.object({
                 'string.base': 'QUESTIONEN_MUST_BE_A_STRING',
                 'any.required': 'QUESTIONEN_IS_REQUIRED',
               }), 
-            answers: Joi.string()
+            answer: Joi.string()
               .required()
               .messages({
                 'string.base': 'ANSWERSEN_MUST_BE_AN_STRINGS',

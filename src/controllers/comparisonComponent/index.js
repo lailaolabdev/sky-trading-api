@@ -1,5 +1,6 @@
 const {createComparisonComponentService, deleteComparisonComponentService, updateComparisonComponentService, comparisonComponentExists, getComparisonComponentService} = require('../../services/comparisonComponent');
 const validateComparisonComponent = require('../../validators/comparisonComponentValidator');
+const { searchQuery } = require('./helper');
 
 const createComparisonComponent = async (req, res) => {
     try {
@@ -49,7 +50,8 @@ const updateComparisonComponent = async (req, res) => {
 
 const getComparisonComponent = async (req, res) => {
     try {
-        const comparisonComponent = await getComparisonComponentService(req);
+        const query = searchQuery(req);
+        const comparisonComponent = await getComparisonComponentService(req, query);
         if(!comparisonComponent.data) {
             return res.status(400).json({ message: comparisonComponent.message });
         }

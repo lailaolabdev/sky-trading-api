@@ -28,6 +28,19 @@ const updateComparisonService = async (req) => {
     }
 };
 
+const updateComparisonWithBrokerService = async (req, id) => {
+    try {
+        const updateComparison = await comparisonModel.findByIdAndUpdate(id, req.body, { new: true });
+        if (!updateComparison) {
+            return { message: "COMPARISON_NOT_FOUND", data: null };
+        }
+        return { message: "UPDATE_COMPARISON_SUCCESSFUL", data: updateComparison._id };
+    } catch (error) {
+        console.error("Error updating broker data:", error);
+        return { message: "INTERNAL_SERVER_ERROR", data: null };
+    }
+};
+
 const brokerComparinsonExits = async (req) => {
     try {
         const brokerComparinson = await comparisonModel.findOne({brokerID: req.body.brokerID});
@@ -97,4 +110,4 @@ const brokerSimilarityService = async (req, query) => {
 }
 
 
-module.exports = { createComparisonService, updateComparisonService, brokerComparinsonExits, brokerComparisonsService, brokerSimilarityService}
+module.exports = { createComparisonService, updateComparisonService, updateComparisonWithBrokerService, brokerComparinsonExits, brokerComparisonsService, brokerSimilarityService}

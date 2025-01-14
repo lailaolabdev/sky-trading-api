@@ -58,7 +58,7 @@ const comparisonSchema = Joi.object({
             "any.required": "MINIMUMDEPOSIT_IS_REQUIRED",
         }),
 
-    depositAndWithdrawFees: Joi.string()
+    depositAndWithdrawFee: Joi.string()
         .required()
         .messages({
             "string.base": "DEPOSITANDWITHDRAWFEES_MUST_BE_A_STRING",
@@ -107,18 +107,18 @@ const comparisonSchema = Joi.object({
             "any.required": "CUSTOMERSUPPORT_IS_REQUIRED",
         }),
 
-    introduceBrokerFees: Joi.string()
+    introduceBrokerFee: Joi.string()
         .required()
         .messages({
             "string.base": "INTRODUCEBROKERFEES_MUST_BE_A_STRING",
             "any.required": "INTRODUCEBROKERFEES_IS_REQUIRED",
         }),
 
-    introduceBrokerFeesEN: Joi.string()
+    introduceBrokerFeeEN: Joi.string()
         .required()
         .messages({
-            "string.base": "INTRODUCEBROKERFEESEN_MUST_BE_A_STRING",
-            "any.required": "INTRODUCEBROKERFEESEN_IS_REQUIRED",
+            "string.base": "introduceBrokerFeeEN_MUST_BE_A_STRING",
+            "any.required": "introduceBrokerFeeEN_IS_REQUIRED",
         }),
 
     depositMethods: Joi.string()

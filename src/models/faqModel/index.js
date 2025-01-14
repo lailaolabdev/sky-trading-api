@@ -6,13 +6,13 @@ const faqSchema = new mongoose.Schema({
   questionAnswer: [
     {
       question: { type: String },
-      answers: { type: [String] }, // Array of strings
+      answer: { type: String }, // Array of strings
     },
   ],
   questionAnswerEN: [
     {
       question: { type: String },
-      answers: { type: String },
+      answer: { type: String },
     },
   ],
   createdAt: { type: Date, default: Date.now },
