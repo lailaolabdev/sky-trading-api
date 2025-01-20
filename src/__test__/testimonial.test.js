@@ -5,14 +5,16 @@ const mongoose = require("mongoose");
 const { generateToken } = require("../utils/generateTokens");
 
 describe("Test Testimonial Routes", () => {
+    let mongoServer;
     beforeAll(async () => {
-        const mongoServer = await MongoMemoryServer.create();
+        mongoServer = await MongoMemoryServer.create();
         await mongoose.connect(mongoServer.getUri());
     });
 
     afterAll(async () => {
         await mongoose.disconnect();
         await mongoose.connection.close();
+        await mongoServer.stop();
     });
 
     const testimonialData = {
