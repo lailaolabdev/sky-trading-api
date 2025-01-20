@@ -7,7 +7,23 @@ on:
     branches: dev-setup
 
 jobs:
-  build:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      # Step 1: Checkout source code
+      - name: Checkout source
+        uses: actions/checkout@v3
+
+      # Step 2: Install dependencies
+      - name: Install dependencies
+        run: npm install
+
+      # Step 3: Run tests
+      - name: Run tests
+        run: npm run test
+
+jobs:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       # Step 1: Checkout source code
