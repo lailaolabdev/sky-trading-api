@@ -22,6 +22,9 @@ jobs:
 
       # Step 3: Run tests
       - name: Run tests
+        env:
+          JWT_SECRET_KEY: ${{ secrets.JWT_SECRET_KEY }}
+          JWT_TOKEN_EXPIRES: ${{ secrets.JWT_TOKEN_EXPIRES }}
         run: npm run test
 
   deploy:
