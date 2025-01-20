@@ -8,9 +8,9 @@ const getStaffsService = async (req, searchQuery) => {
         const limit = parseInt(req.query.limit) || 25;
         const skip = parseInt(req.query.skip) || 0;
         // Aggregation query to fetch staff with pagination
-        console.log({searchQuery, limit, skip});
         const staffs = await userModel.aggregate([
             { $match: searchQuery },
+            { $sort: { createdAt: -1 } },
             { $skip: skip }, 
             { $limit: limit }, 
             { $project: { password: 0 } }     
@@ -78,10 +78,25 @@ const deleteStaffService = async (req) => {
     }
 };
 
+const addStaffExisted = async (req) => {  
+    try {
+        const staff = req.body;
+        const existingStaff = await userModel.findOne({
+            $or: [
+                { email: staff.email },
+                { userName: staff.userName }
+            ]
+        });
+        return existingStaff ? true : false;  // Return true if staff exists, false otherwise
+    } catch (error) {
+        console.error('Error checking staff existence:', error);
+        return false; 
+    }
+
+}
 const staffExisted = async (req) => {  
     try {
         const staff = req.body;
-        console.log(req.params.id);
         const existingStaff = await userModel.findOne({
             _id: { $ne: req.params.id },
             $or: [
@@ -89,7 +104,6 @@ const staffExisted = async (req) => {
                 { userName: staff.userName }
             ]
         });
-        console.log(existingStaff);
         return existingStaff ? true : false;  // Return true if staff exists, false otherwise
     } catch (error) {
         console.error('Error checking staff existence:', error);
@@ -98,4 +112,4 @@ const staffExisted = async (req) => {
 
 }
 
-module.exports = { getStaffsService, addStaffService, getStaffService, updateStaffService, deleteStaffService, staffExisted};
+module.exports = {addStaffExisted, getStaffsService, addStaffService, getStaffService, updateStaffService, deleteStaffService, staffExisted};

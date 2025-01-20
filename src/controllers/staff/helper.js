@@ -10,15 +10,17 @@ const searchQuery = (req) => {
     }
 
     if (date) {
-        const targetDate = new Date(date);
+        const now = new Date(date);
 
-        // Set the time to start of the day and end of the day
-        const startOfDay = new Date(targetDate.setHours(0, 0, 0, 0));
-        const endOfDay = new Date(targetDate.setHours(23, 59, 59, 999));
+        // Set the start of the day in UTC
+        const startOfDay = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), 0, 0, 0, 0));
+
+        // Set the end of the day in UTC
+        const endOfDay = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), 23, 59, 59, 999));
 
         searchQuery.createdAt = {
-            $gte: startOfDay,  
-            $lt: endOfDay     
+            $gte: startOfDay,
+            $lt: endOfDay
         };
     }
     return searchQuery;

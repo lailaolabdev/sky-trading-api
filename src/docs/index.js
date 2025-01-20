@@ -5,8 +5,6 @@ dotenv.config();
 
 const PORT = process.env.PORT || 8000;
 
-console.log("PORT: ", PORT);
-
 const swaggerOptions = {
   definition: {
     openapi: '3.0.0',

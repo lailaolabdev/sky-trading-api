@@ -245,6 +245,12 @@
  *           type: string
  *         description: A userName term to filter articles by userName.
  *         example: userName 1
+ *       - in: query
+ *         name: date
+ *         schema:
+ *           type: string
+ *         description: A date term to filter articles by date.
+ *         example: 2024-12-16
  *     responses:
   *       200:
  *         description: Staff created successfully
