@@ -18,8 +18,9 @@ const getArticlesService = async (req, query) => {
         const limit = parseInt(req.query.limit) || 25;
 
 
-        const articles = await articleModel.find(query).limit(limit).skip(skip);
-        return {message: "GET_ARTICLES_SUCCESSFUL", data: { totalArticles: articles.length,articles}};
+        const articles = await articleModel.find(query).sort({createdAt: -1}).limit(limit).skip(skip).exec();
+        const articlesCount = await articleModel.find(query).countDocuments();
+        return {message: "GET_ARTICLES_SUCCESSFUL", data: { totalArticles: articlesCount,articles}};
     }catch(error) {
         return {message: "GET_ARTICLES_FAIL", data: null};
     }

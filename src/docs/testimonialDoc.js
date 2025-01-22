@@ -275,6 +275,12 @@
  *           type: string
  *         description: A search term to filter testimonials.
  *         example: "search 1"
+ *       - in: query
+ *         name: date
+ *         schema:
+ *           type: string
+ *         description: A date to filter testimonials.
+ *         example: "2025-01-20"
  *     responses:
  *       200:
  *         description: Testimonials retrieved successfully

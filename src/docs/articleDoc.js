@@ -324,6 +324,12 @@
  *           type: string
  *         description: A topic term to filter articles by topic.
  *         example: topic 1
+ *       - in: query
+ *         name: date
+ *         schema:
+ *           type: string
+ *         description: A date range to filter articles by date.
+ *         example: "2025-01-20"
  *     responses:
  *       200:
  *         description: Articles retrieved successfully

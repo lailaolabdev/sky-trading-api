@@ -29,6 +29,7 @@ const getFaqs = async (req, res) => {
         }
         return res.status(200).json({message: faqs.message, data: faqs.data});
     }catch(error) {
+        console.log(error);
         return res.status(500).json({message: "INTERNAL_SERVER_ERROR"});
     }
 }

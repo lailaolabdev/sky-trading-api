@@ -12,11 +12,14 @@ const createFaqService = async (req) => {
 
 const getFaqsService = async (req, query) => {
     try{
+        console.log({query});
         const skip = parseInt(req.query.skip) || 0;
         const limit = parseInt(req.query.limit) || 25;
-        
-        const faq = await faqModel.find(query).limit(limit).skip(skip).sort({createdAt: -1});
-        return {message: "GET_FAQ_SUCCESSFUL", data: {totalFaqs: faq.length, faqs: faq}};
+        console.log("---here")
+        const faqs = await faqModel.find(query).limit(limit).skip(skip).sort({createdAt: -1}).exec();
+        console.log({faqs});
+        const totalFaqs = await faqModel.find(query).countDocuments();
+        return {message: "GET_FAQ_SUCCESSFUL", data: {totalFaqs, faqs}};
     }catch(error) {
         return {message: "GET_FAQ_FAIL", data: null};
     }

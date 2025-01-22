@@ -286,6 +286,11 @@
  *         required: false
  *         description: Search by type, question, or answer.
  *         example: "News"
+ *       - name: date
+ *         in: query         
+ *         required: false
+ *         description: Filter by date.
+ *         example: "2025-01-20"
  *     responses:
   *       200:
  *         description: FAQ created successfully

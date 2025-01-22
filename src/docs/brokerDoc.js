@@ -445,6 +445,12 @@
  *           type: string
  *         description: A name term to filter brokers by name or other fields.
  *         example: broker 1
+ *       - in: query
+ *         name: date
+ *         schema:
+ *           type: string
+ *         description: A date term to filter brokers by date or other fields.
+ *         example: 2025-01-13
  *     responses:
  *       200:
  *         description: Brokers retrieved successfully
