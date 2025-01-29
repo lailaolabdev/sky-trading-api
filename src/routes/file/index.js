@@ -4,6 +4,6 @@ const router = express.Router();
 const {getPresignedUrl} = require("../../controllers/file");
 const {checkAuthorization} = require("../../middlewares")
 
-router.post("/presign-url", checkAuthorization, getPresignedUrl);
+router.post("/presign-url", getPresignedUrl);
 
 module.exports = router;

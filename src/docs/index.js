@@ -15,6 +15,10 @@ const swaggerOptions = {
     },
     servers: [
       {
+        url: `https://trading-dev-api.s-site.trade`, // Production server
+        description: 'Dev Development server',
+      },
+      {
         url: `http://54.179.246.119:${PORT}`, // Production server
         description: 'Dev Development server',
       },
