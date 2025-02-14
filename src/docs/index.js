@@ -15,11 +15,15 @@ const swaggerOptions = {
     },
     servers: [
       {
-        url: `https://trading-dev-api.s-site.trade`, // Production server
+        url: `https://api.s-site.trade`, // Production server
+        description: 'Production Development server',
+      },
+      {
+        url: `https://trading-dev-api.s-site.trade`, // Development server
         description: 'Dev Development server',
       },
       {
-        url: `http://54.179.246.119:${PORT}`, // Production server
+        url: `http://54.179.246.119:${PORT}`, // Development server
         description: 'Dev Development server',
       },
       {
