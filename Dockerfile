@@ -10,5 +10,5 @@ RUN npm install nodemon -g
 COPY . . 
 
 
-# CMD ["npm", "run", "start:dev"]
-CMD ["npm", "run", "start:prod"]
+CMD ["npm", "run", "start:dev"]
+# CMD ["npm", "run", "start:prod"]
