@@ -1,4 +1,5 @@
 const comparisonComponentModel = require("../../models/comparisonComponentModel");
+const comparisonModel = require("../../models/comparisonModel");
 
 const createComparisonComponentService = async (req) => {
     try {
@@ -36,6 +37,66 @@ const updateComparisonComponentService = async (req) => {
         if(!updatedComparisonComponent) {
             return {message: "COMPARISON_COMPONENT_NOT_FOUND", data: null};
         }
+
+        // remove delete items of comparison component from broker comparison
+        const brokerComparison = await comparisonModel.find().exec();
+        if (brokerComparison) {
+            if (updatedComparisonComponent.component === "Regulations") {
+                for (const comparison of brokerComparison) {
+                    if (comparison.regulations) {
+                        let newData = comparison.regulations;
+                        newData = newData.filter(item => updatedComparisonComponent.items.includes(item));
+                        await comparisonModel.findByIdAndUpdate(comparison._id, { regulations: newData });
+                    }
+                }
+            }
+            if (updatedComparisonComponent.component === "Trading Platforms") {
+                for (const comparison of brokerComparison) {
+                    if (comparison.tradingPlatforms) {
+                        let newData = comparison.tradingPlatforms;
+                        newData = newData.filter(item => updatedComparisonComponent.items.includes(item));
+                        await comparisonModel.findByIdAndUpdate(comparison._id, { tradingPlatforms: newData });
+                    }
+                }
+            }
+            if (updatedComparisonComponent.component === "Tradable Instruments") {
+                for (const comparison of brokerComparison) {
+                    if (comparison.tradableInstruments) {
+                        let newData = comparison.tradableInstruments;
+                        newData = newData.filter(item => updatedComparisonComponent.items.includes(item));
+                        await comparisonModel.findByIdAndUpdate(comparison._id, { tradableInstruments: newData });
+                    }
+                }
+            }
+            if (updatedComparisonComponent.component === "Deposit and Withdraw Fees") {
+                for (const comparison of brokerComparison) {
+                    if (comparison.depositAndWithdrawFee) {
+                        let newData = comparison.depositAndWithdrawFee;
+                        newData = newData.filter(item => updatedComparisonComponent.items.includes(item));
+                        await comparisonModel.findByIdAndUpdate(comparison._id, { depositAndWithdrawFee: newData });
+                    }
+                }
+            }
+            if (updatedComparisonComponent.component === "Customer Support") {
+                for (const comparison of brokerComparison) {
+                    if (comparison.customerSupport) {
+                        let newData = comparison.customerSupport;
+                        newData = newData.filter(item => updatedComparisonComponent.items.includes(item));
+                        await comparisonModel.findByIdAndUpdate(comparison._id, { customerSupport: newData });
+                    }
+                }
+            }
+            if (updatedComparisonComponent.component === "Deposit Methods") {
+                for (const comparison of brokerComparison) {
+                    if (comparison.depositMethods) {
+                        let newData = comparison.depositMethods;
+                        newData = newData.filter(item => updatedComparisonComponent.items.includes(item));
+                        await comparisonModel.findByIdAndUpdate(comparison._id, { depositMethods: newData });
+                    }
+                }
+            }
+        }
+
         return {message: "UPDATE_COMPARISON_COMPONENT_SUCCESSFUL", data: updatedComparisonComponent._id};
     } catch (error) {
         console.error("Error :", error);
